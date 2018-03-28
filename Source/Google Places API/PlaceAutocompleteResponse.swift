@@ -27,6 +27,19 @@ public extension GooglePlaces {
             predictions <- map["predictions"]
         }
         
+        public struct StructuredFormatting: Mappable {
+            public var mainText = ""
+            public var secondaryText = ""
+            
+            public init() {}
+            public init?(map: Map) { }
+            
+            public mutating func mapping(map: Map) {
+                mainText <- map["main_text"]
+                secondaryText <- map["secondary_text"]
+            }
+        }
+        
         /**
          *  Prediction
          */
@@ -36,6 +49,7 @@ public extension GooglePlaces {
             public var terms: [Term] = []
             public var types: [String] = []
             public var matchedSubstring: [MatchedSubstring] = []
+            public var structuredFormatting = StructuredFormatting()
             
             public init() {}
             public init?(map: Map) { }
@@ -65,6 +79,7 @@ public extension GooglePlaces {
                 terms <- map["terms"]
                 types <- map["types"]
                 matchedSubstring <- map["matched_substrings"]
+                structuredFormatting <- map["structured_formatting"]
             }
         }
         
